@@ -1,3 +1,57 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Kyle"
+    },
+    {
+      "id": 2,
+      "name": "Jeganath"
+    },
+    {
+      "id": 3,
+      "name": "Wayne"
+    },
+    {
+      "id": 4,
+      "name": "Harsh"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Courier Management",
+      "personId": 1,
+      "organization": "Courier team",
+      "created": 1604989757139
+    },
+    {
+      "id": 2,
+      "name": "Financial Statement Management",
+      "personId": 2,
+      "organization": "Financial team",
+      "created": 1604989757139
+    },
+    {
+      "id": 3,
+      "name": "UI Design Spike",
+      "personId": 2,
+      "organization": "Analytics team",
+      "created": 1546300800000
+    },
+    {
+      "id": 4,
+      "name": "Grafana Dashboard",
+      "personId": 3,
+      "organization": "Data team",
+      "created": 1604980000011
+    },
+    {
+      "id": 5,
+      "name": "Grafana Dashboard Improvement",
+      "personId": 4,
+      "organization": "Data team",
+      "created": 1546900800000
+    }
+  ]
 }
