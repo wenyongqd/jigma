@@ -1,29 +1,54 @@
 import { useAuth } from '../context/auth-context';
-import React, { FormEvent } from 'react';
+import React from 'react';
+import { Button, Form, Input } from 'antd';
 
 export const LoginScreen = () => {
     const { login } = useAuth();
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const username = (event.currentTarget.elements[0] as HTMLInputElement)
-            .value;
-        const password = (event.currentTarget.elements[1] as HTMLInputElement)
-            .value;
-        login({ username, password });
+    const handleSubmit = async (values: {
+        username: string;
+        password: string;
+    }) => {
+        try {
+            await login(values);
+        } catch (error: any) {
+            console.log('Failed to login:', error);
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">username</label>
-                <input type="text" id={'username'} />
-            </div>
-            <div>
-                <label htmlFor="password">password</label>
-                <input type="password" id={'password'} />
-            </div>
-            <button type={'submit'}>login</button>
-        </form>
+        <Form onFinish={handleSubmit}>
+            <Form.Item
+                name={'username'}
+                rules={[{ required: true, message: 'Please input username' }]}
+            >
+                <Input
+                    size={'large'}
+                    placeholder={'Username'}
+                    type="text"
+                    id={'username'}
+                />
+            </Form.Item>
+            <Form.Item
+                name={'password'}
+                rules={[{ required: true, message: 'Please input password' }]}
+            >
+                <Input
+                    size={'large'}
+                    placeholder={'Password'}
+                    type="password"
+                    id={'password'}
+                />
+            </Form.Item>
+            <Form.Item>
+                <Button
+                    size={'large'}
+                    htmlType={'submit'}
+                    style={{ borderRadius: '8px' }}
+                >
+                    login
+                </Button>
+            </Form.Item>
+        </Form>
     );
 };
