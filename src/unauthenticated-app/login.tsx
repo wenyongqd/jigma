@@ -1,6 +1,7 @@
 import { useAuth } from '../context/auth-context';
 import React from 'react';
 import { Button, Form, Input } from 'antd';
+import styled from '@emotion/styled';
 
 export const LoginScreen = () => {
     const { login } = useAuth();
@@ -22,7 +23,7 @@ export const LoginScreen = () => {
                 name={'username'}
                 rules={[{ required: true, message: 'Please input username' }]}
             >
-                <Input
+                <RoundInput
                     size={'large'}
                     placeholder={'Username'}
                     type="text"
@@ -33,7 +34,7 @@ export const LoginScreen = () => {
                 name={'password'}
                 rules={[{ required: true, message: 'Please input password' }]}
             >
-                <Input
+                <PasswordInput
                     size={'large'}
                     placeholder={'Password'}
                     type="password"
@@ -41,14 +42,56 @@ export const LoginScreen = () => {
                 />
             </Form.Item>
             <Form.Item>
-                <Button
+                <StyledButton
                     size={'large'}
                     htmlType={'submit'}
                     style={{ borderRadius: '8px' }}
                 >
                     login
-                </Button>
+                </StyledButton>
             </Form.Item>
         </Form>
     );
 };
+
+const RoundInput = styled(Input)`
+    border-radius: 12px;
+    width: 27rem;
+    border-color: #262626 !important;
+    box-shadow: none !important;
+    :hover {
+        border: 1px solid #262626 !important;
+        outline: 1px solid #262626 !important;
+        box-shadow: none !important;
+        transition: none !important;
+    }
+`;
+
+const PasswordInput = styled(Input.Password)`
+    border-radius: 12px;
+    width: 27rem;
+    border-color: #262626 !important;
+    box-shadow: none !important;
+    :hover {
+        border: 1px solid #262626 !important;
+        outline: 1px solid #262626 !important;
+        box-shadow: none !important;
+        transition: none !important;
+    }
+`;
+
+const StyledButton = styled(Button)`
+    border-radius: 12px;
+    color: white;
+    width: 27rem;
+    font-weight: bold;
+    background-color: #262626;
+    border-color: #262626;
+
+    :hover {
+        background-color: #e4dfd9;
+        border-color: #e4dfd9 !important;
+        color: white !important;
+    }
+    box-shadow: none;
+`;
