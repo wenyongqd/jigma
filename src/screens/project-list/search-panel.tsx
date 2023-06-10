@@ -20,11 +20,12 @@ interface SearchPanelProps {
 
 export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
     return (
-        <Form>
+        <Form style={{ marginBottom: '2rem' }} layout={'inline'}>
             <Form.Item>
                 <Input
                     type="text"
                     value={param.name}
+                    placeholder={'Search projects'}
                     onChange={(evt) =>
                         setParam({
                             ...param,
@@ -32,6 +33,8 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
                         })
                     }
                 />
+            </Form.Item>
+            <Form.Item>
                 <Select
                     value={param.personId}
                     onChange={(value) =>

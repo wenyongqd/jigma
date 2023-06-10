@@ -11,6 +11,7 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.16",
     "antd": "^5.5.0",
+    "dayjs": "^1.11.8",
     "jigma-dev-tool": "1.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
