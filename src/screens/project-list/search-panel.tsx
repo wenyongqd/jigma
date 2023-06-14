@@ -1,5 +1,7 @@
 import React from 'react';
 import { Form, Input, Select } from 'antd';
+import styled from '@emotion/styled';
+import { SearchOutlined } from '@ant-design/icons';
 
 export interface User {
     id: string;
@@ -22,8 +24,9 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
     return (
         <Form style={{ marginBottom: '2rem' }} layout={'inline'}>
             <Form.Item>
-                <Input
+                <RoundSearch
                     type="text"
+                    prefix={<SearchOutlined />}
                     value={param.name}
                     placeholder={'Search projects'}
                     onChange={(evt) =>
@@ -35,12 +38,12 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
                 />
             </Form.Item>
             <Form.Item>
-                <Select
+                <RoundSelect
                     value={param.personId}
                     onChange={(value) =>
                         setParam({
                             ...param,
-                            personId: value,
+                            personId: value as string,
                         })
                     }
                 >
@@ -50,8 +53,32 @@ export const SearchPanel = ({ users, param, setParam }: SearchPanelProps) => {
                             {user.name}
                         </Select.Option>
                     ))}
-                </Select>
+                </RoundSelect>
             </Form.Item>
         </Form>
     );
 };
+
+const RoundSearch = styled(Input)`
+    border-radius: 15px;
+    width: 24rem;
+    border-color: #262626 !important;
+    box-shadow: none !important;
+    :hover {
+        border: 1px solid #262626 !important;
+        outline: 1px solid #262626 !important;
+        box-shadow: none !important;
+        transition: none !important;
+    }
+`;
+
+const RoundSelect = styled(Select)`
+    .ant-select-selector {
+        border-radius: 15px;
+        border: 1px solid #262626 !important;
+        :hover {
+            outline: 1px solid #262626 !important;
+            transition: none !important;
+        }
+    }
+`;

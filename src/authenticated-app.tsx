@@ -1,10 +1,11 @@
 import React from 'react';
 import { ProjectListScreen } from 'screens/project-list';
 import { useAuth } from 'context/auth-context';
-import { Button } from 'antd';
+import { Button, Dropdown, MenuProps } from 'antd';
 import styled from '@emotion/styled';
 import { Row } from './components/lib';
 import SoftwareLogo from 'assets/logo.png';
+import { PoweroffOutlined } from '@ant-design/icons';
 
 export const AuthenticatedApp = () => {
     const { logout } = useAuth();
@@ -29,7 +30,7 @@ export const AuthenticatedApp = () => {
                     <h2>User</h2>
                 </HeaderLeft>
                 <HeaderRight>
-                    <Button onClick={logout}>Log out</Button>
+                    <User />
                 </HeaderRight>
             </Header>
             <Main>
@@ -38,6 +39,37 @@ export const AuthenticatedApp = () => {
         </Container>
     );
 };
+
+const User = () => {
+    const { logout, user } = useAuth();
+
+    const items: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <Button
+                    style={{ color: 'Black', fontWeight: '600px' }}
+                    onClick={logout}
+                    type={'link'}
+                >
+                    Logout
+                </Button>
+            ),
+        },
+    ];
+
+    return (
+        <Dropdown menu={{ items }}>
+            <RoundButton
+                icon={<PoweroffOutlined />}
+                onClick={(e) => e.preventDefault()}
+            >
+                Hi, {user?.name}
+            </RoundButton>
+        </Dropdown>
+    );
+};
+
 const Container = styled.div`
     display: grid;
     grid-template-rows: 6rem 1fr 6rem;
@@ -51,3 +83,16 @@ const Header = styled(Row)`
 const HeaderLeft = styled(Row)``;
 const HeaderRight = styled.div``;
 const Main = styled.main``;
+const RoundButton = styled(Button)`
+    border-radius: 12px;
+    color: #f36805;
+    font-weight: bold;
+    border-color: #f36805;
+
+    :hover {
+        background-color: #f36805;
+        border-color: #f36805 !important;
+        color: white !important;
+    }
+    box-shadow: none;
+`;
